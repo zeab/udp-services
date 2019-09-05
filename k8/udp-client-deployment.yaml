@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udpclient
+  namespace: {ENTER NAMESPACE NAME HERE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udpclient
+  template:
+    metadata:
+      labels:
+        app: udpclient
+    spec:
+      containers:
+      - name: udpclient
+        image: zeab/udpclient
+        imagePullPolicy: Always
+        env:
+        - name: ROOT_LOG_LEVEL
+          value: INFO
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 250m
+            memory: 250Mi

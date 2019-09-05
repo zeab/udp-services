@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<configuration>
+
+    <appender name="STDOUT-RAW" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="stdout" additivity="false">
+        <appender-ref ref="STDOUT-RAW"/>
+    </logger>
+
+    <root level="${ROOT_LOG_LEVEL:-INFO}"/>
+
+</configuration>

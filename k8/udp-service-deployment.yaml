@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udpservice
+  namespace: {ENTER NAMESPACE NAME HERE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udpservice
+  template:
+    metadata:
+      labels:
+        app: udpservice
+    spec:
+      containers:
+      - name: udpservice
+        image: zeab/udpservice
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8125
+          protocol: UDP
+        env:
+        - name: ROOT_LOG_LEVEL
+          value: INFO
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 250m
+            memory: 250Mi

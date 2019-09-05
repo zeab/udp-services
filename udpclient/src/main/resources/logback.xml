@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<configuration>
+
+    <!--Output to console-->
+    <appender name="STDOUT-RAW" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Output to a UDP endpoint -->
+    <appender name="UDP" class="net.logstash.logback.appender.LogstashUdpSocketAppender">
+        <host>${UDP_HOST:-localhost}</host>
+        <port>${UDP_PORT:-8125}</port>
+        <!--Straight-->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%msg</Pattern>
+        </layout>
+        <!--Json-->
+        <!--<layout class="net.logstash.logback.layout.LogstashLayout"/>-->
+    </appender>
+
+    <logger name="stdout" additivity="false">
+        <appender-ref ref="STDOUT-RAW"/>
+    </logger>
+
+    <logger name="udp" additivity="false" level="${UDP_LOG_LEVEL:-INFO}">
+        <appender-ref ref="UDP"/>
+    </logger>
+
+    <root level="${ROOT_LOG_LEVEL:-INFO}"/>
+
+</configuration>
