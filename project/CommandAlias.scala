@@ -10,7 +10,7 @@ object CommandAlias {
 
   //List all Docker Alias here
   val allDockerAlias: Seq[Def.Setting[_]] =
-    dockerCommands("travisci", udpServiceKey, udpClientKey) ++
+    dockerCommands("travis-ci", udpServiceKey, udpClientKey) ++
       dockerCommands("us", udpServiceKey) ++
       dockerCommands(udpServiceKey) ++
       dockerCommands("uc", udpClientKey) ++
